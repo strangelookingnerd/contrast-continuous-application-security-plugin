@@ -16,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
-import java.io.IOException;
 import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -154,7 +153,7 @@ class ThresholdConditionSecurityTest {
     // -------- doFillThresholdVulnTypeItems --------
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsEmptyWhenNoItemAndNotAdmin() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsEmptyWhenNoItemAndNotAdmin() throws Exception {
         when(jenkins.hasPermission(Jenkins.ADMINISTER)).thenReturn(false);
 
         ListBoxModel result = descriptor.doFillThresholdVulnTypeItems(null, "profile");
@@ -163,7 +162,7 @@ class ThresholdConditionSecurityTest {
     }
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsEmptyWhenItemPresentButNoConfigurePermission() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsEmptyWhenItemPresentButNoConfigurePermission() throws Exception {
         when(item.hasPermission(Item.CONFIGURE)).thenReturn(false);
 
         ListBoxModel result = descriptor.doFillThresholdVulnTypeItems(item, "profile");
@@ -172,7 +171,7 @@ class ThresholdConditionSecurityTest {
     }
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsTypesWhenItemHasConfigurePermission() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsTypesWhenItemHasConfigurePermission() throws Exception {
         when(item.hasPermission(Item.CONFIGURE)).thenReturn(true);
         ListBoxModel expected = new ListBoxModel();
         mockedHelper.when(() -> VulnerabilityTrendHelper.getVulnerabilityTypes("profile")).thenReturn(expected);

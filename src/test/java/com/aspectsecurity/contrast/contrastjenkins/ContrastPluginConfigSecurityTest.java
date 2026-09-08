@@ -182,7 +182,7 @@ class ContrastPluginConfigSecurityTest {
     }
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsEmptyWhenNoItemAndNotAdmin() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsEmptyWhenNoItemAndNotAdmin() throws Exception {
         when(jenkins.hasPermission(Jenkins.ADMINISTER)).thenReturn(false);
 
         ListBoxModel result = descriptor.doFillThresholdVulnTypeItems(null, "profile");
@@ -191,7 +191,7 @@ class ContrastPluginConfigSecurityTest {
     }
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsTypesWhenNoItemAndAdmin() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsTypesWhenNoItemAndAdmin() throws Exception {
         when(jenkins.hasPermission(Jenkins.ADMINISTER)).thenReturn(true);
         ListBoxModel expected = new ListBoxModel();
         mockedHelper.when(() -> VulnerabilityTrendHelper.getVulnerabilityTypes("profile")).thenReturn(expected);
@@ -202,7 +202,7 @@ class ContrastPluginConfigSecurityTest {
     }
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsEmptyWhenItemPresentButNoConfigurePermission() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsEmptyWhenItemPresentButNoConfigurePermission() throws Exception {
         when(item.hasPermission(Item.CONFIGURE)).thenReturn(false);
 
         ListBoxModel result = descriptor.doFillThresholdVulnTypeItems(item, "profile");
@@ -211,7 +211,7 @@ class ContrastPluginConfigSecurityTest {
     }
 
     @Test
-    void doFillThresholdVulnTypeItemsReturnsTypesWhenItemPresentAndHasConfigurePermission() throws IOException {
+    void doFillThresholdVulnTypeItemsReturnsTypesWhenItemPresentAndHasConfigurePermission() throws Exception {
         when(item.hasPermission(Item.CONFIGURE)).thenReturn(true);
         ListBoxModel expected = new ListBoxModel();
         mockedHelper.when(() -> VulnerabilityTrendHelper.getVulnerabilityTypes("profile")).thenReturn(expected);
