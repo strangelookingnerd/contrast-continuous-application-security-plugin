@@ -1,10 +1,10 @@
 package com.aspectsecurity.contrast.contrastjenkins;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import hudson.util.FormValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ContrastPluginConfigTest {
 
